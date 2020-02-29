@@ -13,4 +13,5 @@ class Style {
     fontSize: 20.0,
     fontWeight: FontWeight.w800
   );
+
 }
