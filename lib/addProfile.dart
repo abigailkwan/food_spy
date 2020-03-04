@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'services.dart';
 import 'text_style.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'datetime_picker.dart';
 
 class addProfile extends StatefulWidget {
 
@@ -12,21 +12,39 @@ class addProfile extends StatefulWidget {
 }
 
 class addProfileState extends State <addProfile> {
-  final formKey = GlobalKey<FormState>();
   final newProfile = Profile();
+  final myController = TextEditingController();
+  final dateTimeController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    myController.addListener(_printLatestValue);
+    dateTimeController.addListener(_printLatestValue);
+  }
+
+  @override
+  void dispose() {
+    myController.dispose();
+    dateTimeController.dispose();
+    super.dispose();
+  }
+
+  _printLatestValue() {
+    print("Testing: ${myController.text}");
+    print("Current Date: ${dateTimeController.text}");
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(230, 230, 250, 1.0),
       body: Container(
-            child: Builder(
-                builder: (context) => Form (
-                  key: formKey,
-                    child: Column(
+            child: Column(
                       children: [
                        SizedBox(height: 50.0),
                       TextFormField(
+                        controller: myController,
                         decoration: InputDecoration(
                         labelText: 'Name',
                         border: new OutlineInputBorder(
@@ -46,34 +64,23 @@ class addProfileState extends State <addProfile> {
                           }
                           return null;
                           },
-                        onSaved: (val) => setState(() => newProfile.name),
-                      ),
+                          onChanged: (val) {
+                          setState(() => newProfile.name);
+                          print("Testing: $val");}
+                          ),
                         SizedBox(height: 25.0),
-                        FlatButton(
-                          onPressed: () {
-                            DatePicker.showDatePicker(context,
-                              showTitleActions: true,
-                              minTime: DateTime.now(),
-                              maxTime: DateTime(2099, 12, 31),
-                              onChanged: (date) {print('Enter ExpirationDate');},
-                              onConfirm: (date) {print('Confirm Expiration Date');},
-                              currentTime: DateTime.now(), locale: LocaleType.en);},
-                            child: Text('Enter expiration date',)
-                            ),
+                        dateTimePicker(dateTimeController),
                         Container(
                           padding: const EdgeInsets.symmetric(
                             vertical: 16.0, horizontal: 16.0),
                           child: RaisedButton(
                             onPressed: () {
-                              final form = formKey.currentState;
                               }
                               )
                           ),
                       ]
                     )
                 ),
-            ),
-      )
     );
   }
 }
