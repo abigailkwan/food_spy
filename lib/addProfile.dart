@@ -4,6 +4,8 @@ import 'dart:async';
 import 'services.dart';
 import 'text_style.dart';
 import 'datetime_picker.dart';
+import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class addProfile extends StatefulWidget {
 
@@ -28,6 +30,30 @@ class addProfileState extends State <addProfile> {
     myController.dispose();
     dateTimeController.dispose();
     super.dispose();
+  }
+
+  Future postSettings() async{
+    String name = jsonEncode(myController.text);
+
+    String exp_date = jsonEncode(dateTimeController.text.substring(0,19));
+
+    Map<String, dynamic> body = {
+      'name': name,
+      //'reg_date': reg_date,
+      'exp_date': exp_date,
+    };
+
+    String postUrl = url + postData;
+    http.Response r = await http.post(
+      postUrl,
+      body: body,
+    );
+
+    int statusCode = r.statusCode;
+    String responseBody = r.body;
+    print("Posting Status: ${statusCode.toString()}");
+    print("responseBody: ${responseBody}");
+    print("exp_date: ${exp_date}");
   }
 
   _printLatestValue() {
@@ -74,7 +100,11 @@ class addProfileState extends State <addProfile> {
                           padding: const EdgeInsets.symmetric(
                             vertical: 16.0, horizontal: 16.0),
                           child: RaisedButton(
+                            child: Container(
+                              child: const Text ('Add Food'),
+                            ),
                             onPressed: () {
+                                postSettings();
                               }
                               )
                           ),
