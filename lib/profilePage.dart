@@ -63,6 +63,7 @@ class _DetailPageState extends State<DetailPage> {
                     deleteProfile();
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();
+                    setState((){});
                   },
                 )
               ]

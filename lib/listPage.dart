@@ -8,7 +8,14 @@ import 'profilePage.dart';
 import 'text_style.dart';
 import 'addProfile.dart';
 
-class listPage extends StatelessWidget {
+class listPage extends StatefulWidget{
+
+  @override
+  listPageState createState() => listPageState();
+}
+
+class listPageState extends State<listPage> {
+  
 
   @override
   Widget build(BuildContext context) {
