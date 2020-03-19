@@ -6,6 +6,7 @@ String url = 'https://abigailkwan.000webhostapp.com/';
 String profileData = 'index.php?data=1';
 String tempData = 'index.php?data=2';
 String postData = 'post.php';
+String deleteData = 'delete.php';
 
 Future<List<Profile>> getProfileData() async{
   final response = await http.get(url + profileData);
