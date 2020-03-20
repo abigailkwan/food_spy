@@ -7,6 +7,7 @@ String profileData = 'index.php?data=1';
 String tempData = 'index.php?data=2';
 String postData = 'post.php';
 String deleteData = 'delete.php';
+String editData = 'edit.php';
 
 Future<List<Profile>> getProfileData() async{
   final response = await http.get(url + profileData);

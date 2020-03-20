@@ -25,7 +25,7 @@ class BasicDateTimeField extends State<dateTimePicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(50.0),
+      padding: EdgeInsets.all(20.0),
       child: Column(
         children: <Widget>[
         Text('Basic date & time field (${format.pattern})'),
