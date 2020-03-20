@@ -65,7 +65,53 @@ class _DetailPageState extends State<DetailPage> {
                     Navigator.of(context).pop();
                     setState((){});
                   },
-                )
+                ),
+                new FlatButton(
+                  child: Text("Cancel"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }
+                ),
+              ]
+          );
+        }
+    );
+  }
+
+  Future <void> _verifyEdit (BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: new Text("Edit Profile"),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius
+                      .all(
+                      Radius.circular(5.0))),
+              content: SingleChildScrollView(
+                  child: ListBody(
+                      children: <Widget>[
+                        Text(
+                            "Are you sure you want to delete?"),
+                      ]
+                  )
+              ),
+              actions: <Widget>[
+                new FlatButton(
+                  child: Text("Delete"),
+                  onPressed: () {
+                    //deleteProfile();
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                    setState((){});
+                  },
+                ),
+                new FlatButton(
+                    child: Text("Cancel"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    }
+                ),
               ]
           );
         }
@@ -112,35 +158,71 @@ class _DetailPageState extends State<DetailPage> {
                       ]
                   )
               ),
-              Container(
-                    margin: EdgeInsets.fromLTRB(200, 200, 0, 0),
-                    height: 50,
-                    width: 10,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(5.0),
-                        child: Container(
-                            width: 5,
-                            height: 40.0,
-                            color: Color.fromRGBO(255, 255, 255, 1.0),
-                            child: Material(
-                                child: InkWell(
-                                    splashColor: Color.fromRGBO(0, 66, 116, 1.0),
-                                    onTap: () {
-                                      _showDialog(context);
-                                    },
-                                    child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget> [
-                                          Icon(Icons.delete_forever),
-                                          Text("Delete"),
-                        ]
-                      )
-                    )
+              new Container(
+                  margin: EdgeInsets.fromLTRB(0, 120, 0, 0),
+                  height: 100,
+                  width: 400,
+                  child: new Row (
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget> [
+                    new Container(
+                      width: 75,
+                      height: 75,
+                      child: new ClipRRect(
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: Container(
+                              width: 5,
+                              height: 40.0,
+                              color: Color.fromRGBO(255, 255, 255, 1.0),
+                              child: Material(
+                                  child: InkWell(
+                                      splashColor: Color.fromRGBO(0, 66, 116, 1.0),
+                                      onTap: () {
+                                        _verifyEdit(context);
+                                        },
+                                      child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget> [
+                                            Icon(Icons.edit),
+                                            Text("Edit"),
+                                          ]
+                                      )
+                                  )
+                              )
+                          )
+                      ),
+                    ),
+                    Container(
+                        height: 75,
+                        width: 75,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5.0),
+                            child: Container(
+                                width: 5,
+                                height: 40.0,
+                                color: Color.fromRGBO(255, 255, 255, 1.0),
+                                child: Material(
+                                    child: InkWell(
+                                        splashColor: Color.fromRGBO(0, 66, 116, 1.0),
+                                        onTap: () {
+                                          _showDialog(context);
+                                        },
+                                        child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: <Widget> [
+                                              Icon(Icons.delete_forever),
+                                              Text("Delete"),
+                                            ]
+                                        )
+                                    )
+                                )
                             )
-                  )
-                )
-              ),
-            ]
+                        )
+                    ),
+                  ]
+                  ),
+              )
+            ],
         )
     );
   }
