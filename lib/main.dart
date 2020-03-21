@@ -42,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> pages;
   Widget currentPage;
 
+
   @override
   void initState() {
     one = listPage();
@@ -57,8 +58,23 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
           appBar: new AppBar(
-            title: Text("BlueJay"),
-          ),
+            title: new FutureBuilder(
+
+              future: getTemperatureData(),
+              builder: (context, snap){
+                if(snap.hasData){
+                  return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(snap.data.temp, textAlign: TextAlign.left, textScaleFactor: 2,),
+                        Text("°C", textAlign: TextAlign.left, textScaleFactor: 2,),
+                      ]
+                  );
+                }else if (snap.hasError) {return new Text("${snap.error}");}
+                return new CircularProgressIndicator();
+              },),
+
+              ),
           body: currentPage,
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentTab,
