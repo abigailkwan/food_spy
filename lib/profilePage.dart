@@ -132,11 +132,24 @@ class _DetailPageState extends State<DetailPage> {
                   child: new Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        new Text(title),
-                        new Text(profile.name,
-                        style: Style.commonTextStyle),
-                        new Text(profile.exp_date),
-                        new Text(profile.reg_date)
+                        new Row(
+                          children: <Widget>[
+                            new Text(profile.name,
+                                style: Style.commonTextStyle),
+                          ]
+                        ),
+                        new Row(
+                            children: <Widget>[
+                              new Text("Date Registered: "),
+                              new Text(profile.reg_date),
+                            ]
+                        ),
+                        new Row(
+                            children: <Widget>[
+                              new Text("Expiration: "),
+                              new Text(profile.exp_date),
+                            ]
+                        ),
                       ]
                   )
               ),
