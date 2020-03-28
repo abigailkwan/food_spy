@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: Color.fromRGBO(0, 66, 116, 1.0)
       ),
       home: MyHomePage(title: 'Testing JSON'),
     );
@@ -80,18 +79,22 @@ class _MyHomePageState extends State<MyHomePage> {
               future: getTemperatureData(),
               builder: (context, snap){
                 if(snap.hasData){
-                  if(int.parse(snap.data.temp) >= 4){
+                  int currentTemp = int.parse(snap.data.temp);
+                  if(currentTemp >= 4){
                     showOngoingNotification(notifications, title: 'Temperature Alert! Temp is higher than 4C',
                         body: snap.data.temp);
                   }
                   return Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(snap.data.temp, textAlign: TextAlign.left, textScaleFactor: 2,),
+                        Text('${currentTemp}', textAlign: TextAlign.left, textScaleFactor: 2,),
                         Text("°C", textAlign: TextAlign.left, textScaleFactor: 2,),
                       ]
                   );
-                }else if (snap.hasError) {return new Text("${snap.error}");}
+                }else if (snap.hasError) {
+                  print('${snap.error}');
+                  return new Text("BlueJay");
+                }
                 return new CircularProgressIndicator();
               },),
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'local_notifications_helper.dart';
 import 'local_notification_widget.dart';
-
+import 'services.dart';
 class settingsPage extends StatefulWidget {
 
  @override
@@ -10,12 +10,15 @@ class settingsPage extends StatefulWidget {
 
 class settingsPageState extends State<settingsPage> {
 
-
   @override
-  Widget build(BuildContext context) => Scaffold(
-    body: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: LocalNotificationWidget(),
+  Widget build(BuildContext context) => Container(
+    child: ListView(
+      children: <Widget>[
+        RaisedButton(
+          child: Text("Wipe all Data"),
+          onPressed: () => deleteAll(),
+        ),
+      ],
     )
   );
 
