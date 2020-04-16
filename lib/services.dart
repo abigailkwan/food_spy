@@ -8,6 +8,7 @@ String tempData = 'index.php?data=2';
 String postData = 'post.php';
 String deleteData = 'delete.php';
 String editData = 'edit.php';
+String wipeData = 'wipe.php';
 
 Future<List<Profile>> getProfileData() async{
   final response = await http.get(url + profileData);
@@ -22,6 +23,19 @@ Future getTemperatureData() async{
   String tempdata = map['temp_data'];
   Temperature temp_current = Temperature(tempdata);
   return temp_current;
+}
+
+Future deleteAll() async{
+
+  String postUrl = url + wipeData;
+  http.Response r = await http.post(
+      postUrl
+  );
+
+  int statusCode = r.statusCode;
+  String responseBody = r.body;
+  print("Posting Status: ${statusCode.toString()}");
+  print("responseBody: ${responseBody}");
 }
 
 List<Profile> createProfileList(List data) {
