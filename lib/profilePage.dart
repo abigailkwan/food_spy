@@ -121,7 +121,7 @@ class _DetailPageState extends State<DetailPage> {
     final title = "Details".toUpperCase();
     return new Container(
         child: new ListView(
-            padding: new EdgeInsets.fromLTRB(50.0, 145.0, 50.0, 32.0),
+            padding: new EdgeInsets.fromLTRB(50.0, 50.0, 50.0, 32.0),
             children: <Widget>[
               new Container(
                   decoration: new BoxDecoration(
@@ -132,6 +132,9 @@ class _DetailPageState extends State<DetailPage> {
                   child: new Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        Image.network(url+"/img/"+profile.food_image,
+                        height: 200,
+                        width: 250),
                         new Row(
                           children: <Widget>[
                             new Text(profile.name,
@@ -154,7 +157,7 @@ class _DetailPageState extends State<DetailPage> {
                   )
               ),
               new Container(
-                  margin: EdgeInsets.fromLTRB(0, 120, 0, 0),
+                  margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
                   height: 100,
                   width: 400,
                   child: new Row (

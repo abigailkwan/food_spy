@@ -9,6 +9,7 @@ String postData = 'post.php';
 String deleteData = 'delete.php';
 String editData = 'edit.php';
 String wipeData = 'wipe.php';
+String addPic = 'add_img.php';
 
 Future<List<Profile>> getProfileData() async{
   final response = await http.get(url + profileData);
@@ -47,8 +48,9 @@ List<Profile> createProfileList(List data) {
     String food = data[i]["name"];
     String registered = data[i]["reg_date"];
     String expired = data[i]["exp_date"];
+    String picUrl = data[i]["food_image"];
     Profile profile = new Profile(
-      food_id: id, name: food, reg_date: registered, exp_date: expired);
+      food_id: id, name: food, reg_date: registered, exp_date: expired, food_image: picUrl);
     list.add(profile);
   }
   return list;
@@ -72,11 +74,13 @@ class Profile {
   final String name;
   final String reg_date;
   final String exp_date;
+  final String food_image;
 
   Profile({this.food_id,
     this.name,
     this.reg_date,
-    this.exp_date});
+    this.exp_date,
+    this.food_image});
 }
 
 class Temperature {

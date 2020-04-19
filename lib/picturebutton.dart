@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'services.dart';
 import 'text_style.dart';
+import 'package:http/http.dart' as http;
 
 class pictureButton extends StatefulWidget {
 
@@ -29,6 +30,27 @@ class pictureButtonState extends State<pictureButton> {
   }
 
   Future postPicture() async {
+    String profileEdited = jsonEncode(_currentProfile.food_id);
+    String pictureName = jsonEncode(_currentProfile.food_id + ".jpg");
+
+    Map<String, dynamic> body = {
+      'food_id': profileEdited,
+      //'reg_date': reg_date,
+      'file_name': pictureName,
+    };
+
+    String postUrl = url + addPic;
+    http.Response r = await http.post(
+      postUrl,
+      body: body,
+    );
+
+    int statusCode = r.statusCode;
+    String responseBody = r.body;
+    print("Posting Status: ${statusCode.toString()}");
+    print("responseBody: ${responseBody}");
+    print("exp_date: ${pictureName}");
+
   }
 
   @override
@@ -70,12 +92,18 @@ class pictureButtonState extends State<pictureButton> {
                 ])),
       actions: <Widget>[
       FlatButton(
-        child: Text("Ok"),
+        child: Text("Add Image"),
         onPressed: () {
-
+          postPicture();
+          Navigator.of(context).pop();
         },
-      )
+      ),
+        FlatButton(
+          child: Text("Cancel"),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        )
       ],);
-//button with popup adds photo to photo column of food
   }
 }
