@@ -16,10 +16,11 @@ class cameraAccessState extends State<cameraAccess> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        color: Color.fromRGBO(0, 66, 116, 1.0),
       child: ListView(
         children: <Widget>[
           Image.network('https://abigailkwan.000webhostapp.com/img/abby.jpg'),
-          FlatButton(
+          RaisedButton(
             child: Text("Add Picture to Profile"),
             onPressed: () {
               showDialog<String>(context: context,

@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'editButton.dart';
 
 class DetailPage extends StatefulWidget {
+
   final Profile profile;
 
   DetailPage(this.profile);
@@ -107,8 +108,8 @@ class _DetailPageState extends State<DetailPage> {
           title: Text(profile.name),
         ),
         body: new Container(
+          color: Theme.of(context).primaryColor,
           constraints: new BoxConstraints.expand(),
-          color: Color.fromRGBO(0, 66, 116, 1.0),
           child: new Stack(
             children: <Widget>[
               displayContent()
@@ -121,17 +122,23 @@ class _DetailPageState extends State<DetailPage> {
     final title = "Details".toUpperCase();
     return new Container(
         child: new ListView(
-            padding: new EdgeInsets.fromLTRB(50.0, 145.0, 50.0, 32.0),
+            padding: new EdgeInsets.fromLTRB(50.0, 50.0, 50.0, 32.0),
             children: <Widget>[
               new Container(
                   decoration: new BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 1.0),
+                    color: Theme.of(context).bottomAppBarColor,
                 borderRadius: new BorderRadius.circular(25.0),
                 ),
                   padding: new EdgeInsets.symmetric(vertical:32.0, horizontal:32.0),
                   child: new Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.network(url+"/img/"+profile.food_image,
+                              height: 200,
+                              width: 250),
+                        ),
                         new Row(
                           children: <Widget>[
                             new Text(profile.name,
@@ -154,7 +161,7 @@ class _DetailPageState extends State<DetailPage> {
                   )
               ),
               new Container(
-                  margin: EdgeInsets.fromLTRB(0, 120, 0, 0),
+                  margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
                   height: 100,
                   width: 400,
                   child: new Row (
@@ -163,12 +170,14 @@ class _DetailPageState extends State<DetailPage> {
                     new Container(
                       width: 75,
                       height: 75,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
                       child: new ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: Container(
                               width: 5,
                               height: 40.0,
-                              color: Color.fromRGBO(255, 255, 255, 1.0),
                               child: Material(
                                   child: InkWell(
                                       splashColor: Color.fromRGBO(0, 66, 116, 1.0),
@@ -197,6 +206,9 @@ class _DetailPageState extends State<DetailPage> {
                     Container(
                         height: 75,
                         width: 75,
+                        decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        ),
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(5.0),
                             child: Container(

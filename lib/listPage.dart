@@ -40,6 +40,7 @@ class listPageState extends State<listPage> {
   @override
   Widget build(BuildContext context) {
     return new Container(
+      color: Theme.of(context).primaryColor,
         child: new FutureBuilder<List<Profile>>(
           future: getProfileData(),
           builder: (context, snapshot) {
@@ -52,7 +53,7 @@ class listPageState extends State<listPage> {
                     print(todaydate);
                     if (snapshot.data[index].exp_date.substring(0,10) == todaydate){
                     showOngoingNotification(notifications, title: 'Expiration alert! The food below is about to expire:',
-                        body: snapshot.data[index].name);}
+                      body: snapshot.data[index].name);}
                     return new Card(
                       margin: EdgeInsets.all(10.0),
                       child: ListTile(
