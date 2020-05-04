@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
 class Style {
-
+  final baseTextStyle = const TextStyle(
+    fontFamily: 'Poppins'
+  );
   static final commonTextStyle = const TextStyle(
     color: Color.fromRGBO(0, 0, 0, 1.0),
     fontSize: 30.0,
-    fontWeight: FontWeight.w400
+    fontWeight: FontWeight.w400,
   );
 
   static final listTextStyle = const TextStyle(
     color: Color.fromRGBO(0, 0, 0, 1.0),
     fontSize: 20.0,
-    fontWeight: FontWeight.w800
+      fontFamily: 'Poppins'
   );
 
 }

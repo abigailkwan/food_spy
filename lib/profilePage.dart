@@ -132,9 +132,12 @@ class _DetailPageState extends State<DetailPage> {
                   child: new Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Image.network(url+"/img/"+profile.food_image,
-                        height: 200,
-                        width: 250),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.network(url+"/img/"+profile.food_image,
+                              height: 200,
+                              width: 250),
+                        ),
                         new Row(
                           children: <Widget>[
                             new Text(profile.name,
