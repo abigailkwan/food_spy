@@ -64,7 +64,6 @@ class addProfileState extends State <addProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(230, 230, 250, 1.0),
       body: Container(
             child: Column(
                       children: [
@@ -80,7 +79,6 @@ class addProfileState extends State <addProfile> {
                         contentPadding: EdgeInsets.only(top: 14.0),
                         prefixIcon: Icon(
                         Icons.local_offer,
-                        color: Color.fromRGBO(0, 0, 0, 1.0),
                       ),
                         hintText: "Enter the food's name",
                       ),

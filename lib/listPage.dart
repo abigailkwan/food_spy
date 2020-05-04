@@ -40,7 +40,7 @@ class listPageState extends State<listPage> {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      color: Color.fromRGBO(0, 66, 116, 1.0),
+      color: Theme.of(context).primaryColor,
         child: new FutureBuilder<List<Profile>>(
           future: getProfileData(),
           builder: (context, snapshot) {

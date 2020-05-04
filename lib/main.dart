@@ -13,17 +13,27 @@ import 'cameraAccess.dart';
 import 'settingsPage.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'testPage.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
 
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-      ),
-      home: MyHomePage(title: 'Testing JSON'),
+    return new DynamicTheme(
+        defaultBrightness: Brightness.light,
+        data: (brightness) => new ThemeData(
+          primaryColor: Color.fromRGBO(0, 66, 116, 1.0),
+          accentColor: Color.fromRGBO(255, 255, 255, 1.0),
+          brightness: brightness,
+        ),
+        themedWidgetBuilder: (context, theme){
+      return MaterialApp(
+        title: 'Flutter Demo',
+        theme: theme,
+        home: MyHomePage(title: 'Testing JSON'),
+      );
+    }
     );
   }
 }
